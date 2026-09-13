@@ -8,10 +8,10 @@ class OptionsBag
     private const DEFAULT_COST = 10;
 
     /** @var int */
-    private $rounds = self::DEFAULT_ROUNDS;
+    private int $rounds = self::DEFAULT_ROUNDS;
 
     /** @var int */
-    private $cost = self::DEFAULT_COST;
+    private int $cost = self::DEFAULT_COST;
 
     /**
      * OptionsBag constructor.
@@ -19,10 +19,10 @@ class OptionsBag
      */
     public function __construct(array $options = [])
     {
-        if (isset($options['rounds'])) {
+        if (array_key_exists('rounds', $options)) {
             $this->rounds = $options['rounds'];
         }
-        if (isset($options['cost'])) {
+        if (array_key_exists('cost', $options)) {
             $this->cost = $options['cost'];
         }
     }
