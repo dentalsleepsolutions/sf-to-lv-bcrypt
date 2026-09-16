@@ -6,10 +6,8 @@ use RuntimeException;
 
 class BcryptHasher
 {
-    private const SALT = '';
-
     /** @var SymfonyEncoderWrapper */
-    private $symfonyEncoderWrapper;
+    private SymfonyEncoderWrapper $symfonyEncoderWrapper;
 
     public function __construct(SymfonyEncoderWrapper $symfonyEncoderWrapper)
     {
@@ -25,7 +23,7 @@ class BcryptHasher
     {
         $optionsBag = new OptionsBag($options);
         $encoder = $this->symfonyEncoderWrapper->getEncoder($optionsBag);
-        $hash = $encoder->encodePassword($value, self::SALT);
+        $hash = $encoder->hash($value);
         if (!$hash) {
             throw new RuntimeException('BCrypt is not supported on this server');
         }
@@ -42,7 +40,7 @@ class BcryptHasher
     {
         $optionsBag = new OptionsBag($options);
         $encoder = $this->symfonyEncoderWrapper->getEncoder($optionsBag);
-        $result = $encoder->isPasswordValid($hashedValue, $value, self::SALT);
+        $result = $encoder->verify($hashedValue, $value);
         return $result;
     }
 

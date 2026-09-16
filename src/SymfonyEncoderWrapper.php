@@ -2,17 +2,17 @@
 
 namespace VKR\SymfonyLaravelBCryptBridge;
 
-use Symfony\Component\Security\Core\Encoder\NativePasswordEncoder;
+use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher;
 
 class SymfonyEncoderWrapper
 {
     /**
      * @param OptionsBag $optionsBag
-     * @return NativePasswordEncoder
+     * @return NativePasswordHasher
      */
-    public function getEncoder(OptionsBag $optionsBag): NativePasswordEncoder
+    public function getEncoder(OptionsBag $optionsBag): NativePasswordHasher
     {
-        $encoder = new NativePasswordEncoder($optionsBag->getRounds(), null, $optionsBag->getCost());
+        $encoder = new NativePasswordHasher($optionsBag->getRounds(), null, $optionsBag->getCost());
         return $encoder;
     }
 }

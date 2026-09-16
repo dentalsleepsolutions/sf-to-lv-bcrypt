@@ -14,7 +14,7 @@ class BcryptHasherTest extends TestCase
     private const WRONG_COST = 20;
 
     /** @var BcryptHasher */
-    private $bcryptHasher;
+    private BcryptHasher $bcryptHasher;
 
     public function setUp(): void
     {
